@@ -1,24 +1,32 @@
 const express = require('express');
 const path = require('path');
+const Member = require('../models/Member');
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
-   // res.sendFile(path.join(__dirname, '../public', 'member.html'));
     res.render('member', {title: 'member'});
 });
 
 router.get('/join', (req, res) => {
-    // res.sendFile(path.join(__dirname, '../public', 'join.html'));
     res.render('join', {title: '회원가입'});
+});
+router.post('/join',  (req, res, next) => {
+    // 폼으로 전송된 데이터들은 req.body, req.body.폼이름 등으로 확인 가능
+     console.log(req.body);
+     //console.log(req.body.uid, req.body.name, req.body.email);
+   let {uid, pwd, pwd2, name, email} = req.body; // 변수의 개수가 맞아야해.
+    console.log(uid, pwd, name, email);
+    new Member(uid, pwd, name, email).insert();
+
+    res.redirect(303, '/member/login');
 });
 
 router.get('/login', (req, res) => {
-    // res.sendFile(path.join(__dirname, '../public', 'login.html'));
     res.render('login', {title: '회원로그인'});
 });
 
 router.get('/myinfo', (req, res) => {
-    // res.sendFile(path.join(__dirname, '../public', 'myinfo.html'));
     res.render('myinfo', {title: '회원정보'});
 });
 
