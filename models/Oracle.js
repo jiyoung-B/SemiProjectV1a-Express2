@@ -4,7 +4,7 @@ const dbconfig = require('../dbconfig');
 const Oracle = {
     initConn: () => {
         oracledb.initOracleClient(
-            {libDir: 'C:/Java/instantclient_19_17'});
+            {libDir: 'C:/Java/instantclient_19_18'});
     },
 
     makeConn: async () => {
