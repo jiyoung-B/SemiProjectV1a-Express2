@@ -4,6 +4,20 @@
 {{/section}}
 
 {{#section 'script'}}
+    <script>
+        const writeBoard = () => {
+            let frm = document.write;
+            if(frm.title.value == '') alert('제목 입력!')
+            else {
+                frm.method = 'post';
+                frm.enctype = 'application/x-www-form-urlencoded'
+                frm.submit();
+            }
+        }
+        let wbtn = document.querySelector('#wbtn');
+        wbtn.addEventListener('click', writeBoard);
+
+    </script>
 
 {{/section}}
 <main>
@@ -21,7 +35,7 @@
                       rows="7" cols="55"></textarea></div>
 
         <div><label></label>
-            <button type="button">입력완료</button>
+            <button type="button" id="wbtn">입력완료</button>
             <button type="reset">다시입력</button>
         </div>
     </form>
